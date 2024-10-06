@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../core/api.service';
+import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-medicine-home',
@@ -13,8 +16,10 @@ export class MedicineHomeComponent {
   
   searchText:string="";
 
-  searchSubject:any;
+  searchSubject:Subject<string>= new Subject<string>();
+
   medicines:any;
+  
 
   constructor(private api: ApiService) {
 
@@ -22,17 +27,20 @@ export class MedicineHomeComponent {
   
   ngOnInit(){
     this.searchSubject.pipe(
-      this.api.getDataFromServer("top-deals?name="+this.searchText)
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((query:string)=> this.api.getDataFromServer("top-deals?description_like="+this.searchText))
     ).subscribe({
       next:(response:any)=>{
         console.log("response",response);
+        this.medicines=response && response.length > 0 ?response:[];
       },
       error:()=>{
 
       }
       
     })
-  }
+    }
   searchCityByPincode() {
     if (this.pincode.trim().length === 6) {
       const endPoint = "get-pincode-details?pincode=" + this.pincode;
