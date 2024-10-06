@@ -1,0 +1,136 @@
+<p>medicine-home works!</p>
+
+<div class="container-fluid py-4 text-center bg-primary">
+    <h3>Get Huge Savings On Medicines</h3>
+    <div class="d-flex justify-content-center">
+    <div class="p-2"><i class="bi bi-check2-circle"></i>100 % Genuine Medicines</div>
+    <div class="p-2"><i class="bi bi-check2-circle"></i>Trusted Pharmacies   </div>
+    <div  class="p-2"><i class="bi bi-check2-circle"></i>Delivery to your doorstep</div>
+    <div  class="p-2"><i class="bi bi-check2-circle"></i>Store Pick up</div>
+</div>
+</div><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container border rounded search-box m-auto shadow">
+    <div class="input-group">
+        <span class="input-group-text p-3 bg-light city-label">{{city}} {{pincode}} <i class="bi bi-chevron-down ms-4 text-primary cursor fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></span>
+        <input type="text" class="form-control p-3" placeholder="Search Medicines" name="search" [(ngModel)]="searchText" >
+        <span class="input-group-text bg-light p-3"> <i class="bi bi-search mx-2 text-primary fw-bold"></i> <a class="mx-2 text-decoration-none">Search</a></span>    
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h5 class="text-center mb-0">Set Your Location</h5>
+            <div class="mb-3 mt-0">
+                <label for="id1" class="form-label ms-2 city-label">Pincode :</label>
+                <input type="text" class="form-control" id="id1" name="pcode" [(ngModel)]="pincode" (ngModelChange)="searchCityByPincode()">
+                <label class="form-label ms-2 city-label">{{city}}</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+</div> 
+
+
+<!-- image -->
+<div class="container w-75 mt-3 shadow">
+<img src="https://www.medibuddy.in/assets/banners/medicine-page.webp" width="900px" height="150px">
+</div><br>
+
+
+
+<!-- slides -->
+<div class="container w-75">
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://www.medibuddy.in/assets/banners/otcStore.webp" width="400px" height="140px" alt="img">
+            <img src="https://mb-meds-assets.medibuddy.in/banners/OTC-Store/upkarnaWeb.png"  width="400px" height="140px" alt="img">
+          </div>
+          <div class="carousel-item active" >
+            <img src="https://www.medibuddy.in/assets/banners/otcStore.webp" width="400px" height="140px" alt="img">
+            <img src="https://mb-meds-assets.medibuddy.in/banners/OTC-Store/upkarnaWeb.png"  width="400px" height="140px" alt="img">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      </div><br>
+
+      
+<div class="container w-75 mt-2">
+  <app-top-deals></app-top-deals>
+</div>
+
+
+
+
+  <!-- order medicine prescription -->
+  <div class="container w-75">
+  <h3>Order Medicines through Prescription</h3>
+  <br>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text">Don't have a Prescription?<br>
+                Consult Top Doctors Online and order medicines through valid prescriptions.</p>
+            </div>
+            <button type="button" class="btn btn-primary">
+            <a class="nav-link">Start consulation  -> &nbsp;
+              </a>
+            </button>
+          </div>
+      <div class="col-md-4">
+        <img src="https://www.medibuddy.in/assets/icons/services/med-consultation.svg" class="img-fluid rounded-front" alt="...">
+      </div>
+      </div>
+    </div>
+  </div><br>
+
+
+  <!-- past orders -->
+  <div class="container w-75 p-2 mt-2">
+    <div class="row">
+<h3>Past Orders</h3>
+    <img src="https://www.medibuddy.in/assets/icons/user-login.svg"  height="80px" alt="login">
+    <div class="text-center p-2 m-2">Login  to see your past orders.</div>
+    </div>
+  </div><br>
+    <br>
+
+
+    <div class="container w-75">
+      <div class="display-center flex-dir-col smd-Txt">  
+          <img src="https://www.medibuddy.in/assets/banners/app-banner.webp"  width="900px" height="300px">
+    </div>
+  </div>
+  
+
+
+  
