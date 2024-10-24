@@ -2,9 +2,51 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <img src="https://www.medibuddy.in/assets/logos/medibuddyWithName.svg" height="50" width="150">
-    <div>
-    <a class="navbar-text" href="#">About Us</a>
-    <a class="navbar-text" href="#">Login</a>
     </div>
-     </div>
-</nav>
+
+    <div class="col-md-7">
+      <ul class="nav d-flex justify-content-end p-2 fw-bold font-size cursor">
+          <li class="nav-item">
+             <a class="nav-link"><i class="bi bi-cart fs-4 fw-bold cart"><span class="cart-count border rounded-circle" routerLink="/cart">{{count}}</span></i></a>     
+          </li>
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page">About Us</a>
+          </li>
+          <li class="nav-item" *ngIf="!isLoggedInUser">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal">Login</a>
+          </li>
+           <li class="nav-item" *ngIf="isLoggedInUser">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{userDetails?.name}}
+                </a>
+                 <ul class="dropdown-menu">
+                  <li><a class="dropdown-item">My Profile</a></li>
+                  <li><a class="dropdown-item">My Orders</a></li>
+                  <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+                </ul> 
+          </li> 
+      </ul>
+  </div>
+
+
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" #closeBtn class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <app-login *ngIf="action == 'Login'" (emitAction)="getAction($event)"></app-login>
+           <app-sign-up *ngIf="action== 'Sign-Up'"></app-sign-up>
+        </div>
+        <div class="m-4 d-grid gap-2">
+            <button class="btn btn-primary" *ngIf="action == 'Login'" type="button" (click)="changeAction('Sign-Up')">Sign-Up</button>
+            <button class="btn btn-primary" *ngIf="action == 'Sign-Up'"  type="button" (click)="changeAction('Login')">Login</button>
+        </div>
+        <!-- <div class="modal-footer border">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">SignUp</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

@@ -1,19 +1,17 @@
-<h3>Top Deals</h3>
 <owl-carousel-o [options]="customOptions">
 
   <ng-container *ngFor="let product of topDeals">
-    <ng-template carouselSlide [id]="product.id">
-        <div class="card ms-2" style="width: 16rem;">
-            <img [src]="product.productImageSlug[0]" class="card-img-top" alt="..." [title]="product.description" height="100" width="100">
-            <div class="card-body">
-              <h5 class="card-title text-desc fs-6" [title]="product.description">{{product.description}}</h5>
-              <p class="card-text">{{product.type}}</p>
-              <p class="mb-0"><span>MRP&nbsp;</span><span class="text-decoration-line-through">{{product.actualPrice}}</span></p>
-            <p><span class="ms-1">{{product.discountPrice}}</span></p>
-            </div>
+      <ng-template carouselSlide [id]="product.id">
+          <div class="card ms-2" style="width: 16rem;">
+              <img [src]="product.productImageSlug[0]" class="card-img-top" alt="..." [title]="product.description" height="200" width="200">
+              <div class="card-body">
+                  <h5 class="card-title text-desc fs-6" [title]="product.description">{{product.description}}</h5>
+                  <p class="card-text">{{product.type}}</p>
+                  <p class="mb-0"><span>MRP&nbsp;</span><span class="text-decoration-line-through">₹{{product.actualPrice}}</span></p>
+                  <p>₹<span class="ms-1 float-start">{{product.discountPrice}}</span> <a class="cursor px-1 border border-2 rounded text-decoration-none float-end cursor" (click)="addProductToCart(product)">ADD</a></p>
+              </div>
           </div>
-      
-    </ng-template>
+      </ng-template>
   </ng-container>
 
 </owl-carousel-o>

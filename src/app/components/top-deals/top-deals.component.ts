@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/core/api.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CartService } from 'src/app/cart/cart.service';
 @Component({
   selector: 'app-top-deals',
   templateUrl: './top-deals.component.html',
   styleUrls: ['./top-deals.component.css']
 })
 export class TopDealsComponent {
-topDeals:any=[];
+topDeals:any;
+cartItems:any=[];
 
-   constructor(private api:ApiService){
+   constructor(private api:ApiService,private cart:CartService){
 
    }
    ngOnInit(){
@@ -53,5 +55,19 @@ topDeals:any=[];
     nav: true
   }
 
+  addProductToCart(productObj: any){
+          
+  this.cart.addToCart(productObj);
+         //   if(productObj){
+          // lets check if data is available in local storage i
+        //if available then add data to existing cart.
+        //   this.cartItems = this.cart.getCartDataFromLocalStorage();
+       //     this.cartItems.push(productObj);
+        //     let carItemsStr = JSON.stringify(this.cartItems);
+        //     localStorage.setItem("cart",carItemsStr);
+         //     this.cart. sendCartCount(this.cartItems.length);
+           //  }
+   }
 
-}
+  }
+

@@ -1,0 +1,42 @@
+<p>cart works!</p>
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-7 py-3 border rounded-3">
+            <h6 class="text-muted mb-0">Cart Items : &nbsp;{{orderObj.totalItems}}</h6>
+            <div class="card mt-4" *ngFor="let item of orderObj.products;let i=index">
+                <div class="card-body row">
+                    <div class="col-md-8">
+                        <h6 class="card-title">{{item.description}}</h6>
+                        <p class="card-text text-muted mb-0 text-small">{{item.brand}}</p>
+                        <p class="card-text text-muted text-small">{{item.type}}</p>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <p class="cart-text">₹ {{item.discountPrice}} MRP ₹ <span
+                                class="text-decoration-line-through">{{item.actualPrice}}</span></p>
+                        <p class="fs-5"><span (click)="quantityChange('Increase',i)"><i class="bi bi-plus-circle cursor"></i></span><span class="mx-2">{{item.quantity}}</span>
+                            <span (click)="quantityChange('Decrease',i)"><i
+                                class="bi bi-align-end cursor"></i></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 py-2 ms-4  rounded-3" style="height: 15rem;">
+           
+            <div class="card border">
+                <div class="card-header">
+                    <h6 class="fs-6">Payment Details</h6>
+    
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title total">MRP Totals <span class="ms-2">₹{{orderObj.totalAmount}}</span> </h6>
+                    <h6 class="card-title total">Totals Discount <span class="ms-2">₹{{orderObj.totalDiscounts}}</span></h6>
+                </div>
+                <div class="card-footer text-muted">
+                   <span class="fw-bold">Amount to Pay ₹{{orderObj.finalAmount}}</span> <span class="border p-1 bg-primary text-light cursor"><a (click)="checkout()">Checkout</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

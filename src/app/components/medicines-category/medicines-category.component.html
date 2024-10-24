@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="cursor py-2 bg-primary">
+        <a class="text-light fs-5 fw-bold ms-5 text-decoration-none" routerLink="/medicine-home">Top Deals</a>
+    </div>
+    <div class="py-2 bg-info text-center">
+        <span class="text-light">Showing Medicine Availability and Price in</span> <span class="text-dark"> {{pincodeDetails?.pincode}}&nbsp;{{pincodeDetails?.pincodeCity}}</span>
+    </div>
+</div>
+
+<div class="container mt-3 p-2">
+    <h4>Shop By Categories</h4>
+
+    <div class="row" *ngFor="let categoryObj of medicinesList">
+        <div class="col-md-2 my-3">
+            <div class="card shadow-sm p-2" style="width: 14rem;height: 22rem;">
+                <div class="card-body d-flex align-items-center justify-content-center flex-column">
+                    <h5 class="card-title">{{categoryObj.categoryName}}</h5>
+                    <p class="card-text"> <a class="text-decoration-none fs-5 fw-bold">View All</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mx-5 my-3" *ngFor="let medicineObj of categoryObj.top_deals">
+            <div class="card shadow-sm pb-2" style="width: 15rem;height: 22rem;">
+                <img [src]="medicineObj.productImageSlug[0]" class="card-img-top" alt="..." height="200" width="200">
+                <div class="card-body">
+                    <h5 class="card-title text-desc fs-6">{{medicineObj.description}}</h5>
+                    <p class="card-text">{{medicineObj.type}}</p>
+                    <p class="mb-0"><span>MRP&nbsp;</span><span class="text-decoration-line-through">₹{{medicineObj.actualPrice}}</span></p>
+                    <p>₹<span class="ms-1 float-start">{{medicineObj.discountPrice}}</span> <a class="cursor px-1 border border-2 rounded text-decoration-none float-end cursor" (click)="addProductToCart(medicineObj)">ADD</a></p>
+                </div>
+              </div> 
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../core/api.service';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
+import { UtilityService } from '../core/utility.service';
 
 
 
@@ -15,32 +16,40 @@ export class MedicineHomeComponent {
   city: string = "Jaipur";
   
   searchText:string="";
-
-  searchSubject:Subject<string>= new Subject<string>();
-
-  medicines:any;
+  medicines:any = [];
   
+  searchSubject:Subject<string> = new Subject<string>();
 
-  constructor(private api: ApiService) {
+
+  constructor(private api: ApiService,private utility:UtilityService) {
 
   }
-  
-  ngOnInit(){
-    this.searchSubject.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      switchMap((query:string)=> this.api.getDataFromServer("top-deals?description_like="+this.searchText))
-    ).subscribe({
-      next:(response:any)=>{
-        console.log("response",response);
-        this.medicines=response && response.length > 0 ?response:[];
-      },
-      error:()=>{
 
+
+  ngOnInit(){
+  
+  this.searchSubject.pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
+    switchMap((query:string)=> this.api.getDataFromServer("top-deals?description_like="+this.searchText))
+   ).subscribe({
+    next:(response:any)=>{
+       console.log("response ",response);
+      //mock the response 
+      if(response && response.length > 0){
+        this.medicines = response;
+      }else {
+        this.medicines = [];
       }
-      
-    })
+    },
+    error:()=>{
+
     }
+   })
+
+  }
+
+
   searchCityByPincode() {
     if (this.pincode.trim().length === 6) {
       const endPoint = "get-pincode-details?pincode=" + this.pincode;
@@ -50,6 +59,7 @@ export class MedicineHomeComponent {
           console.log(response);
           if(response && response.length > 0){
            this.city = response[0].pincodeCity
+           this.utility.setPinCodeDetails(response[0]);
           }
         },
         error: () => {
@@ -61,12 +71,12 @@ export class MedicineHomeComponent {
   }
 
   searchProducts(){
-    if(this.searchText.trim()==''){
-      this.medicines=[];
-
-    }
-    else{
-      this.searchSubject.next(this.searchText);
+    if(this.searchText.trim() == ''){
+        this.medicines = [];
+    }else {
+       this.searchSubject.next(this.searchText); 
+   
     }
   }
+
 }

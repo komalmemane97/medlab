@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <p class="text-warning fs-6" *ngIf="errorMessage">{{errorMessage}}</p>
+    <p class="text-success fs-6" *ngIf="successMsg">{{successMsg}}</p>
+    <form (ngSubmit)="signUp()">
+        <div class="mb-3">
+            <label for="id1" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="id1" name="uName" [(ngModel)]="userObj.name">
+        </div>
+        <div class="mb-3">
+            <label for="id2" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="id2" name="uEmail" [(ngModel)]="userObj.email">
+        </div>
+        <label for="id3" class="form-label">Mobile No</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="id3" name="uMobNo" [(ngModel)]="userObj.mobileNo">
+            <button class="btn btn-outline-secondary" *ngIf="!userObj?.isOtpVerified" [disabled]="disableGetOtpBtn" type="button" id="button-addon2" (click)="getOtp()">Get OTP</button>
+            <span class="fs-6 text-primary" *ngIf="userObj?.isOtpVerified"><i class="bi bi-check-circle"></i></span>
+        </div>
+
+        <ng-container *ngIf="displayOtpField">
+            <label for="id6" class="form-label">Enter OTP</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="" id="id6" name="otp" [(ngModel)]="enteredOtp">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="verifyOtp()">Verify OTP</button>
+            </div>
+            <p class="fs-6 fw-bold">OTP is valid for &nbsp;{{otpTimer}}s</p>
+        </ng-container>
+
+        <div class="mb-3">
+            <label for="id4" class="form-label">Password</label>
+            <input type="password" class="form-control" id="id4" name="pwd" [(ngModel)]="userObj.password">
+        </div>
+        <div class="d-grid gap-2">
+            <button  class="btn btn-primary" type="submit">SignUp</button>
+        </div> 
+    </form>
+</div>

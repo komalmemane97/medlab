@@ -1,0 +1,13 @@
+.cursor {
+    cursor: pointer;
+}
+
+.text-small {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.total{
+    font-size: 12px;
+    font-weight: 500;
+}

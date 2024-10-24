@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <h6 class="fw-bold mb-2">Login</h6>
+    <p class="text-warning fs-6" *ngIf="displayErrorMsg">User Does Not Exist Please Register/Signup.</p>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="mb-3">
+            <label for="id1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="id1" aria-describedby="emailHelp" formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="id2" class="form-label">Password</label>
+            <input type="password" class="form-control" id="id2" formControlName="password">
+        </div>
+        <div class="d-grid gap-2">
+            <button  class="btn btn-primary" type="submit">Login</button>
+        </div>    
+        <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+    </form>
+</div>
